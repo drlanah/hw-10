@@ -7,8 +7,27 @@ const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-
+// writeFile -- create HTML page
+const writeFileAsync = util.promisify(fs.writefile);
 const render = require("./lib/htmlRenderer");
+const util = require("util");
+
+const teamArray = [];
+
+function addTeamMember(){
+    return inquirer
+    .prompt([
+        {
+            type: "list",
+            message: "What is your role?"
+            choices: ["Engineer", "Intern", "Manager"]
+            type: "confirm",
+            message: "Do you want to add a new member"
+        }
+
+    ])
+}
+
 
 
 // Write code to use inquirer to gather information about the development team members,
