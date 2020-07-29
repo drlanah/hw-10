@@ -6,7 +6,7 @@ const Employee = require("./Employee.js");
 // Class to create a template for employees
 // extends adds to employee
 class Intern extends Employee {
-  // Name, ID, email
+  // Name, ID, email order matters name, id, email, school
   constructor(name, id, email, school) {
     //grabs other elements and will cascade down, IE - will get all properties and add more in this case Office Number
     super(name, id, email);

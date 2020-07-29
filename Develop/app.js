@@ -4,15 +4,14 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
-
+const util = require("util");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 // writefile will create html page
-const writeFileAsync = util.promisify(fs.writefile);
+const writeFileAsync = util.promisify(fs.writeFile);
 const render = require("./lib/htmlRenderer");
 
 // util - allows you to use write file, asynchronously.
-const util = require("util");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -155,20 +154,13 @@ function newTeamMember() {
       }
     });
 }
+addTeamMember();
+
 // pushes the data to HTML
 function pushToHTML() {
   const createHtml = render(teamArray);
   writeFileAsync(outputPath, createHtml);
 }
-
-addTeamMember();
-function pushToHTML() {
-  const createHtml = render(teamArray);
-  writeFileAsync(outputPath, createHtml);
-}
-
-addTeamMember();
-
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
